@@ -7,4 +7,4 @@ Feature: Login Component
     Then User features are visible
     Examples:
       | username | password |
-      | francisco.moreloso@gmail.com | 170202!Fa |
+      | francisco.moreloso@gmail.com | Fmorelos1 |
