@@ -54,6 +54,7 @@ public class RemoteWebDriverFactory implements IDriver{
             if(options == null){
                 options = new ChromeOptions();
             }
+        if(driver == null)
             driver = new RemoteWebDriver(new URL("http://seleniumgridchrome:4444"),options);
         }catch(MalformedURLException e){
             throw new RuntimeException(e);
