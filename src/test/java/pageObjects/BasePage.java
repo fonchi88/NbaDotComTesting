@@ -43,7 +43,7 @@ public class BasePage {
         }catch(StaleElementReferenceException e){
             Log.error(e.toString());
             Log.debug("Retrying....");
-            sleepTime(3000);
+            sleepTime(5000);
             WAIT.ignoring(NoSuchElementException.class).until(ExpectedConditions.visibilityOf(elem));
         } catch(Exception e){
             Log.error("Unable to locate element identify by:  "+elem);

@@ -53,7 +53,7 @@ public class LoginStepDef {
 
         toolBar.waitUntilInvisibilityOf(toolBar.signIn_icon);
 
-        toolBar.waitUntilIsVisible(driver.findElement(toolBar.userNavControls_menu).findElement(By.xpath("//*[local-name()='svg']")));
+        toolBar.waitUntilIsVisible(driver.findElement(toolBar.userNavControls_menu).findElement(By.xpath(".//*[local-name()='svg']")));
 
         Assert.assertTrue(driver.findElement(toolBar.userNavControls_menu).findElement(By.xpath(".//*[local-name()='svg']")).isDisplayed());
 
