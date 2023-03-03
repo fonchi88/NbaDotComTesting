@@ -11,4 +11,8 @@ public class Log {
     public static void debug(String message){
         logger.debug(message);
     }
+
+    public static void error(String message){
+        logger.error(message);
+    }
 }
