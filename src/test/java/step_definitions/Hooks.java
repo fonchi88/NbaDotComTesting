@@ -20,7 +20,7 @@ public class Hooks {
 
         CONFIGURATIONS = new ConfigFileReader("nba_configuration_prod");
 
-        dm = DriverManager.get(Browser.CHROME);
+        dm = DriverManager.get(Browser.REMOTE);
         dm.setOptions("--no-sandbox","--disable-dev-shm-usage","--ignore-ssl-errors=yes","--ignore-certificate-errors");
 
     }
