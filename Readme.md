@@ -22,3 +22,9 @@ Docker Setup:
 1. docker network create -d bridge --subnet 172.124.10.0/24 --gateway 172.124.10.1  selenium-network
 2. docker run --network selenium-network  --name seleniumgridchrome  --rm -it -p 4444:4444 -p 5900:5900 -p 7900:7900 --shm-size 2g seleniarm/standalone-chromium:latest
 3. docker run --name jenkins --network selenium-network  -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts-jdk11
+
+Execution:
+
+- Open you CLi and navigate to the project´s root folder
+- Run "docker-compose up" command in your CLI
+- Log into jenkins UI and build the gorilla-demo job
