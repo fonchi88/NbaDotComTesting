@@ -1,5 +1,5 @@
 Feature: Login Component
-  Validate that Top 5 players lists shows as expected
+  Log into nba.com with your NBA id
 
   @LoginSuccess
   Scenario Outline: Login with valida credentials
