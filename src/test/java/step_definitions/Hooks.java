@@ -41,7 +41,7 @@ public class Hooks {
     @AfterStep
     public void afterStep(Scenario scenario){
         try{
-            File screenshot = ((TakesScreenshot)DriverManager.get(Browser.REMOTE).getDriver()).getScreenshotAs(OutputType.FILE);
+            File screenshot = ((TakesScreenshot)dm.getDriver()).getScreenshotAs(OutputType.FILE);
             byte[] fileContent = FileUtils.readFileToByteArray(screenshot);
             scenario.attach(fileContent,"image/png","screenshot");
             Log.debug("Attaching screenshot... ");
