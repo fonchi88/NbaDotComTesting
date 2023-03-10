@@ -11,6 +11,7 @@ import io.cucumber.java.Scenario;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import utils.Log;
 
 import java.io.File;
@@ -40,7 +41,7 @@ public class Hooks {
     @AfterStep
     public void afterStep(Scenario scenario){
         try{
-            File screenshot = ((TakesScreenshot)DriverManager.get(Browser.REMOTE)).getScreenshotAs(OutputType.FILE);
+            File screenshot = ((TakesScreenshot)DriverManager.get(Browser.REMOTE).getDriver()).getScreenshotAs(OutputType.FILE);
             byte[] fileContent = FileUtils.readFileToByteArray(screenshot);
             scenario.attach(fileContent,"image/png","screenshot");
             Log.debug("Attaching screenshot... ");
