@@ -7,6 +7,4 @@ services:
       - "5900:5900"
     image: seleniarm/standalone-chromium:latest
     networks:
-      - selenium-network
-networks:
-  selenium-network:
+      - nbadotcomtesting_selenium-network
