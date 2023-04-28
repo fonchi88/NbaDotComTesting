@@ -1,21 +1,16 @@
 version: 'Compose specification'
 services:
-  seleniumgrid:
-    container_name: seleniumgridchrome
-    ports:
-      - "4444:4444"
-      - "5900:5900"
-    image: seleniarm/standalone-chromium:latest
-    networks:
-      - selenium-network
   jenkins:
     container_name: jenkins
     ports:
       - "8080:8080"
       - "50000:50000"
-    image: jenkins/jenkins:lts-jdk11
+    image: jenkins/docker
+    build:
+      context: pipeline
     volumes:
       - "jenkins_home:/var/jenkins_home"
+      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - selenium-network
 networks:
