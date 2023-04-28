@@ -15,6 +15,7 @@ services:
       - selenium-network
 networks:
   selenium-network:
+    name: selenium-network
 volumes:
   jenkins_home:
     external: true
