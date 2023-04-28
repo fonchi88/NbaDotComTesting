@@ -8,3 +8,5 @@ services:
     image: seleniarm/standalone-chromium:latest
     networks:
       - selenium-network
+networks:
+  selenium-network:
