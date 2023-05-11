@@ -51,5 +51,5 @@ RUN ln -s /opt/apache-jmeter-${JMETER_VERSION}/bin/jmeter /usr/local/bin
 # Copying custom property file
 #COPY user.properties /opt/apache-jmeter-${JMETER_VERSION}/bin/user.properties
 
-CMD ["sh", "-c", "sudo chown jenkins /var/run/docker.sock && gosu jenkins /usr/local/bin/jenkins.sh; jmeter"]
+CMD ["sh", "-c", "sudo chown jenkins /var/run/docker.sock && gosu jenkins /usr/local/bin/jenkins.sh; jmeter; set OUT=jmeter.save.saveservice.output_format; set JMX=/usr/jmeter/bin/jenkins.io.jmx; set JTL=/usr/jmeter/reports/jenkins.io.report.jtl"]
 
