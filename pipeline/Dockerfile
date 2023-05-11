@@ -2,7 +2,10 @@ FROM jenkins/jenkins:lts-jdk11
 
 USER root
 
-# Instala Docker
+# JMeter Version
+ARG JMETER_VERSION="5.4.3"
+
+# Install Docker
 RUN apt-get update
 
 RUN apt-get install -y \
@@ -35,5 +38,18 @@ RUN curl -L "https://github.com/docker/compose/releases/download/v2.17.3/docker-
 
 #USER jenkins
 
-CMD ["sh", "-c", "sudo chown jenkins /var/run/docker.sock && gosu jenkins /usr/local/bin/jenkins.sh"]
+# Download and unpack the JMeter tar file
+RUN cd /opt \
+ && apt-get install -y wget \
+ && wget https://mirrors.estointernet.in/apache/jmeter/binaries/apache-jmeter-${JMETER_VERSION}.tgz \
+ && tar xzf apache-jmeter-${JMETER_VERSION}.tgz \
+ && rm apache-jmeter-${JMETER_VERSION}.tgz
+
+# Create a symlink to the jmeter process in a normal bin directory
+RUN ln -s /opt/apache-jmeter-${JMETER_VERSION}/bin/jmeter /usr/local/bin
+
+# Copying custom property file
+#COPY user.properties /opt/apache-jmeter-${JMETER_VERSION}/bin/user.properties
+
+CMD ["sh", "-c", "sudo chown jenkins /var/run/docker.sock && gosu jenkins /usr/local/bin/jenkins.sh; jmeter"]
 
