@@ -36,7 +36,6 @@ RUN apt-get install -y docker.io
 
 RUN curl -L "https://github.com/docker/compose/releases/download/v2.17.3/docker-compose-linux-aarch64" -o /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose
 
-#USER jenkins
 
 # Download and unpack the JMeter tar file
 RUN cd /opt \
@@ -49,7 +48,14 @@ RUN cd /opt \
 RUN ln -s /opt/apache-jmeter-${JMETER_VERSION}/bin/jmeter /usr/local/bin
 
 # Copying custom property file
-#COPY user.properties /opt/apache-jmeter-${JMETER_VERSION}/bin/user.properties
+COPY jmeter/user.properties /opt/apache-jmeter-${JMETER_VERSION}/bin/user.properties
 
-CMD ["sh", "-c", "sudo chown jenkins /var/run/docker.sock && gosu jenkins /usr/local/bin/jenkins.sh; jmeter; set OUT=jmeter.save.saveservice.output_format; set JMX=/usr/jmeter/bin/jenkins.io.jmx; set JTL=/usr/jmeter/reports/jenkins.io.report.jtl"]
+#USER jenkins
+
+#Set jmeter jenkins variables
+ENV OUT=jmeter.save.saveservice.output_format
+ENV JMX=/usr/jmeter/bin/jenkins.io.jmx
+ENV JTL=/usr/jmeter/reports/jenkins.io.report.jtl
+
+CMD ["sh", "-c", "chown jenkins /var/run/docker.sock && gosu jenkins /usr/local/bin/jenkins.sh; jmeter"]
 
